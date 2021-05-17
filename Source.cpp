@@ -17,8 +17,9 @@ char keyPress;
 bool paused = 0;
 bool movement = false;
 int tick = 0;
-
-
+int repetitions = 0;
+int average;
+int lastTime;
 
 class HBM : public olc::PixelGameEngine
 {
@@ -116,8 +117,11 @@ public:
 
 	bool OnUserCreate() override
 	{
-
+		repetitions = 0;
+		average = 0;
+		lastTime = 0;
 		return true;
+		
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
@@ -184,7 +188,13 @@ public:
 		if (startGame == 1)
 		{
 			Clear(olc::CYAN);
-
+			if (repetitions > 0)
+			{
+				DrawString(olc::vf2d(0, ScreenHeight() - 35), "Last time: " + to_string(lastTime) + " ms ", olc::WHITE, 1);
+				DrawString(olc::vf2d(0, ScreenHeight() - 15), "Average time : " + to_string(average / repetitions) + " ms", olc::WHITE, 1);
+			}
+			
+			
 			fAccumulatedTime += fElapsedTime;
 			if (fAccumulatedTime >= fTargetFrameTime)
 			{
@@ -196,7 +206,12 @@ public:
 
 			if (rand() % 200 < 1)
 			{
-				Clear(olc::RED);
+				Clear(olc::CYAN);
+				if (repetitions > 0)
+				{
+					DrawString(olc::vf2d(0, ScreenHeight() - 35), "Last time: " + to_string(lastTime) + " ms ", olc::WHITE, 1);
+					DrawString(olc::vf2d(0, ScreenHeight() - 15), "Average time : " + to_string(average / repetitions) + " ms", olc::WHITE, 1);
+				}
 				startGame = 0;
 				guessingTime = 1;
 				time = 0.0f;
@@ -240,8 +255,10 @@ public:
 				*/
 
 				//cout << fixed << d.count() / 1000000.0 << "s";
-						cout << endl << (int)(time / 60 * 1000) << "miliseconds";
-
+						repetitions++;
+						average = average + (int)(time / 60 * 1000);
+						cout << endl << (int)(time / 60 * 1000) << "miliseconds | average: " << (float)(average/repetitions);
+						lastTime = (int)(time / 60 * 1000);
 						return true;
 					}
 				}
