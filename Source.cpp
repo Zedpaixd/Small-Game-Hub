@@ -128,10 +128,6 @@ public:
 	{
 
 
-
-
-
-
 		if (page1 == 0)
 		{
 			Clear(olc::CYAN);
@@ -231,8 +227,8 @@ public:
 
 			if (guessingTime)
 			{
-				//auto t1 = Clock::now();
-								//auto st = high_resolution_clock::now();
+												//auto t1 = Clock::now();
+														//auto st = high_resolution_clock::now();
 
 
 				for (auto& m : valueInputKeys)
@@ -243,21 +239,21 @@ public:
 					if (GetKey(m.key).bPressed)
 					{
 
-						//auto t2 = Clock::now();
+												//auto t2 = Clock::now();
 
-								 //auto ft = high_resolution_clock::now();
+														//auto ft = high_resolution_clock::now();
 						guessingTime = 0;
 						startGame = 1;
-						//auto d = duration_cast<microseconds>(ft - st);
-				/*
-				printf("%d.", (t2 - t1) / 1000000000);
-				printf("%d seconds", ((t2 - t1) % 1000000000) / 100000);
-				*/
+														//auto d = duration_cast<microseconds>(ft - st);
+										/*
+												printf("%d.", (t2 - t1) / 1000000000);
+												printf("%d seconds", ((t2 - t1) % 1000000000) / 100000);
+										*/
 
-				//cout << fixed << d.count() / 1000000.0 << "s";
+														//cout << fixed << d.count() / 1000000.0 << "s";
 						repetitions++;
 						average = average + (int)(time / 60 * 1000);
-						cout << endl << (int)(time / 60 * 1000) << "miliseconds | average: " << (float)(average/repetitions);
+						/*cout << endl << (int)(time / 60 * 1000) << "miliseconds | average: " << (float)(average/repetitions);*/
 						lastTime = (int)(time / 60 * 1000);
 						return true;
 					}
@@ -267,12 +263,6 @@ public:
 		}
 
 	}
-
-
-
-
-
-
 
 };
 
