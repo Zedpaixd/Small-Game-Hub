@@ -202,7 +202,7 @@ public:
 
 			if (rand() % 200 < 1)
 			{
-				Clear(olc::CYAN);
+				Clear(olc::RED);
 				if (repetitions > 0)
 				{
 					DrawString(olc::vf2d(0, ScreenHeight() - 35), "Last time: " + to_string(lastTime) + " ms ", olc::WHITE, 1);
@@ -440,7 +440,6 @@ public:
 
 
 			/*
-
 			OLD KEYPRESS DETECTION
 			if (_kbhit())
 				keyPress = _getch();
